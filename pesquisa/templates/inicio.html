@@ -1,0 +1,220 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>
+      {% block titulo %}IFRO{% endblock %}
+    </title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <link href="{% static "blog.css" %}" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="container-fluid">
+      <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+          <div class="col-8">
+            <a class="blog-header-logo text-dark" href="/">IFRO - Pesquisa de Atas</a>
+          </div>
+        </div>
+      </header>
+
+    </div>
+
+    {% block conteudo %}
+
+		<div class="container-fluid p-3 p-md-5 text-white rounded bg-dark">
+			<div class="row">
+				<div role="main" class="col-md-10">
+			        <form action="" method="GET">
+				        <div class="form-group">
+					        <label for="Descricao">Descrição</label>
+					        <input type="text" class="form-control form-control-sm" placeholder="Pesquisar" name="q" value="{{ request.GET.q }}" />
+					        <small id="descricaoHelp" class="form-text text-muted">O termo será pesquisado na descrição e categoria dos itens</small>
+				        </div>
+						<div class="form-row">
+					        <div class="form-group col-md-6">
+						        <label for="Valor">Valor</label>
+						        <input type="text" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ request.GET.v }}" />
+						        <small id="valorHelp" class="form-text text-muted">Digite o valor de referência do item, será pesquisado valores com até 30% do valor para cima e para baixo.</small>
+					        </div>
+					        <div class="form-group col-md-3">
+						        <label for="Valor">Percentual</label>
+						        <input maxlength="3" type="text" class="form-control form-control-sm" placeholder="Percentual" name="p" value="{{ request.GET.p }}" />
+						        <small id="valorHelp" class="form-text text-muted">Digite o percentual para substituir os 30% do item anterior.</small>
+					        </div>
+					        <div class="form-group col-md-3">
+						        <label for="Valor">Estado</label>
+
+								<select class="form-control form-control-sm " placeholder="Estado"  name="e" value="{{ request.GET.e }}">
+									<option value="">-----</option>
+									<option value="AC" {% if request.GET.e == "AC"%} selected {% endif %}>Acre</option>
+									<option value="AL" {% if request.GET.e == "AL"%} selected {% endif %}>Alagoas</option>
+									<option value="AP" {% if request.GET.e == "AP"%} selected {% endif %}>Amapá</option>
+									<option value="AM" {% if request.GET.e == "AM"%} selected {% endif %}>Amazonas</option>
+									<option value="BA" {% if request.GET.e == "BA"%} selected {% endif %}>Bahia</option>
+									<option value="CE" {% if request.GET.e == "CE"%} selected {% endif %}>Ceará</option>
+									<option value="DF" {% if request.GET.e == "DF"%} selected {% endif %}>Distrito Federal</option>
+									<option value="ES" {% if request.GET.e == "ES"%} selected {% endif %}>Espírito Santo</option>
+									<option value="GO" {% if request.GET.e == "GO"%} selected {% endif %}>Goiás</option>
+									<option value="MA" {% if request.GET.e == "MA"%} selected {% endif %}>Maranhão</option>
+									<option value="MT" {% if request.GET.e == "MT"%} selected {% endif %}>Mato Grosso</option>
+									<option value="MS" {% if request.GET.e == "MS"%} selected {% endif %}>Mato Grosso do Sul</option>
+									<option value="MG" {% if request.GET.e == "MG"%} selected {% endif %}>Minas Gerais</option>
+									<option value="PA" {% if request.GET.e == "PA"%} selected {% endif %}>Pará</option>
+									<option value="PB" {% if request.GET.e == "PB"%} selected {% endif %}>Paraíba</option>
+									<option value="PR" {% if request.GET.e == "PR"%} selected {% endif %}>Paraná</option>
+									<option value="PE" {% if request.GET.e == "PE"%} selected {% endif %}>Pernambuco</option>
+									<option value="PI" {% if request.GET.e == "PI"%} selected {% endif %}>Piauí</option>
+									<option value="RJ" {% if request.GET.e == "RJ"%} selected {% endif %}>Rio de Janeiro</option>
+									<option value="RN" {% if request.GET.e == "RN"%} selected {% endif %}>Rio Grande do Norte</option>
+									<option value="RS" {% if request.GET.e == "RS"%} selected {% endif %}>Rio Grande do Sul</option>
+									<option value="RO" {% if request.GET.e == "RO"%} selected {% endif %}>Rondônia</option>
+									<option value="RR" {% if request.GET.e == "RR"%} selected {% endif %}>Roraima</option>
+									<option value="SC" {% if request.GET.e == "SC"%} selected {% endif %}>Santa Catarina</option>
+									<option value="SP" {% if request.GET.e == "SP"%} selected {% endif %}>São Paulo</option>
+									<option value="SE" {% if request.GET.e == "SE"%} selected {% endif %}>Sergipe</option>
+									<option value="TO" {% if request.GET.e == "TO"%} selected {% endif %}>Tocantins</option>
+								</select>
+						        <small id="valorHelp" class="form-text text-muted">Digite o Estado do Órgão Gerenciador.</small>
+					        </div>
+						</div>
+				        <input class="btn btn-primary" type="submit" name="filtrar" value="Filtrar">
+			        </form>
+				</div>
+				<aside role="complementary" class="col-md-2">
+					<div class="form-group">
+				        <div class="form-group " >
+					        <label for="precomedio">Total:</label>
+					        <input disabled="True" type="text" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ valortotalunitario}}" />
+					        <small id="valorHelp" class="form-text text-muted">Total dos itens por valor unitário.</small>
+				        </div>
+				        <div class="form-group ">
+					        <label for="Valor">Menor</label>
+					        <input  disabled="True" type="text" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ menorvalor }}" />
+					        <small id="valorHelp" class="form-text text-muted">Menor valor entre a pesquisa.</small>
+				        </div>
+				        <div class="form-group ">
+					        <label for="Valor">Maior</label>
+					        <input  disabled="True" type="text" class="form-control form-control-sm" placeholder="Percentual" name="p" value="{{ maiorvalor }}" />
+					        <small id="valorHelp" class="form-text text-muted">Maior valor entre a pesquisa</small>
+				        </div>
+				        <div class="form-group ">
+					        <label for="Valor">Média</label>
+					        <input  disabled="True" type="text" class="form-control form-control-sm" placeholder="Estado" name="e" value="{{ mediavalor }}" />
+					        <small id="valorHelp" class="form-text text-muted">Média de valor entre a pesquisa</small>
+				        </div>
+					</div>
+				</aside>
+			</div>
+		</div>
+
+	    <div class="container-fluid">
+	    <h1>Atas</h1>
+			<form action="relatorio/" method="POST">
+				{% csrf_token %}
+				<input type="hidden" class="form-control form-control-sm" placeholder="Pesquisar" name="q" value="{{ request.GET.q }}" />
+				<input type="hidden" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ request.GET.v }}" />
+				<input type="hidden" class="form-control form-control-sm" placeholder="Percentual" name="p" value="{{ request.GET.p }}" />
+				<input type="hidden" class="form-control form-control-sm" placeholder="Estado" name="e" value="{{ request.GET.e }}" />
+		        <div class="form-group ">
+			        <label for="Valor">Gerar Relatório com os selecionados</label>
+			        <input class="btn btn-info" type="submit" name="filtrar" value="Emitir" />
+		        </div>
+			    <nav class="table-responsive">
+			        <table class="table table-striped table-hover table-sm table-condensed">
+				        <thead class="thead-dark">
+				            <tr>
+					            <th scope="col">Cod</th>
+					            <th scope="col">Descrição</th>
+					            <th scope="col">Fabricante</th>
+					            <th scope="col">Marca</th>
+					            <th scope="col">Fornecedor</th>
+					            <th scope="col">Descrição Catálogo</th>
+					            <th scope="col">Gerenciador</th>
+					            <th scope="col">UF</th>
+					            <th scope="col">Certame</th>
+					            <th scope="col">Item</th>
+					            <th scope="col">Valor Unitário</th>
+					            <th scope="col">Qtd Ofertada</th>
+					            <th scope="col">Data Vigência</th>
+				            </tr>
+				        </thead>
+				        <tbody>
+					        {% for ata in pagina_atas.object_list %}
+				            <tr class="small" >
+				                <td><input type="checkbox" value="{{ ata.id }}" id="{{ ata.id }}" name="ckbitem" ></td>
+					            <td>{{ ata.descricao_complementar_p1 }}</td>
+					            <td>{{ ata.fabricante }}</td>
+					            <td>{{ ata.marca }}</td>
+					            <td>{{ ata.nome_fornecedor }}</td>
+					            <td>{{ ata.desc_catalogo }}</td>
+					            <td>{{ ata.gerenciador_nome }}</td>
+					            <td>{{ ata.uf }}</td>
+					            <td>{{ ata.certame }}</td>
+					            <td>{{ ata.item|slice:"17:24" }}</td>
+					            <td>{{ ata.valor_unitario }}</td>
+					            <td>{{ ata.qtd_ofertada }}</td>
+					            <td>{{ ata.data_final_vigencia }}</td>
+				            </tr>
+				            {% endfor %}
+
+				        </tbody>
+			        </table>
+
+		            <nav aria-label="Paginação">
+		              <ul class="pagination justify-content-center">
+						{% if pagina_atas.has_previous %}
+							<li>
+							    <a class="page-link" href="?pagina=1&q={{ request.GET.q }}">&laquo; Primeira</a>
+							</li>
+							<li>
+							    <a class="page-link" href="?pagina={{ pagina_atas.previous_page_number }}&q={{ request.GET.q }}">Anterior</a>
+							</li>
+						{% endif %}
+
+							<li class="page-link">
+								Página {{ pagina_atas.number }} de {{ pagina_atas.paginator.num_pages }}
+							</li>
+
+						{% if pagina_atas.has_next %}
+						    <a class="page-link" href="?pagina={{ pagina_atas.next_page_number }}&q={{ request.GET.q }}">Próxima</a>
+						    <a class="page-link" href="?pagina={{ pagina_atas.paginator.num_pages }}&q={{ request.GET.q }}">Última &raquo;</a>
+						{% endif %}
+		              </ul>
+		            </nav>
+		            <nav aria-label="Paginação">
+		              <ul class="pagination justify-content-center">
+			              Total de registros: {{ totalregistros }}
+		              </ul>
+		            </nav>
+
+			</form>
+		    </div>
+        </div>
+    {% endblock %}
+
+    <footer class="blog-footer">
+      <p>IFRO - Pesquisa de Atas</p>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="{% static "popper.min.js" %}"></script>
+    <script src="{% static "bootstrap.min.js" %}"></script>
+    {% block javascript %}{% endblock %}
+  </body>
+</html>

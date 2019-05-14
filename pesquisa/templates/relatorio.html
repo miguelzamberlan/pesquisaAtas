@@ -1,0 +1,122 @@
+{% extends "inicio.html" %}
+
+    {% block conteudo %}
+
+		<div id="actions" class="container-fluid p-3 p-md5">
+		<h3>Resultado da busca e seleção</h3>
+			<div class="row">
+				<div class="form-group col-md-4">
+					<label for="campo1">Descrição</label>
+					<input disabled="True" type="text" class="form-control form-control-sm" placeholder="Pesquisar" name="q" value="{{ request.POST.q }}" />
+				</div>
+
+				<div class="form-group col-md-3">
+					<label for="campo2">Valor Referência</label>
+					<input disabled="True" type="text" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ request.POST.v }}" />
+				</div>
+
+				<div class="form-group col-md-3">
+					<label for="campo3">Percentual</label>
+					<input disabled="True" type="text" class="form-control form-control-sm" placeholder="Percentual" name="p" value="{{ request.POST.p }}" />
+				</div>
+
+				<div class="form-group col-md-2">
+					<label for="campo3">Estado</label>
+					<input disabled="True" type="text" class="form-control form-control-sm" placeholder="Estado" name="e" value="{{ request.POST.e }}" />
+				</div>
+			</div>
+			<div class="row">
+		        <div class="form-group col-md-3" >
+			        <label for="precomedio">Total:</label>
+			        <input disabled="True" type="text" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ valortotalunitario}}" />
+			        <small id="valorHelp" class="form-text text-muted">Total dos itens por valor unitário.</small>
+		        </div>
+		        <div class="form-group col-md-3">
+			        <label for="Valor">Menor</label>
+			        <input  disabled="True" type="text" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ menorvalor }}" />
+			        <small id="valorHelp" class="form-text text-muted">Menor valor entre a pesquisa.</small>
+		        </div>
+		        <div class="form-group col-md-3">
+			        <label for="Valor">Maior</label>
+			        <input  disabled="True" type="text" class="form-control form-control-sm" placeholder="Percentual" name="p" value="{{ maiorvalor }}" />
+			        <small id="valorHelp" class="form-text text-muted">Maior valor entre a pesquisa</small>
+		        </div>
+		        <div class="form-group col-md-3">
+			        <label for="Valor">Média</label>
+			        <input  disabled="True" type="text" class="form-control form-control-sm" placeholder="Estado" name="e" value="{{ mediavalor }}" />
+			        <small id="valorHelp" class="form-text text-muted">Média de valor entre a pesquisa</small>
+		        </div>
+			</div>
+			<div class="col-md-12">
+				<a href="javascript:history.back()" class="btn btn-info">Voltar</a>
+			</div>
+		</div>
+
+
+	    <div class="container-fluid">
+		    <nav class="table-responsive">
+		        <table class="table table-striped table-hover table-sm table-condensed">
+			        <thead class="thead-dark">
+			            <tr>
+				            <th scope="col">Descrição</th>
+				            <th scope="col">Fornecedor</th>
+				            <th scope="col">Gerenciador</th>
+				            <th scope="col">UF</th>
+				            <th scope="col">Certame</th>
+				            <th scope="col">Item</th>
+				            <th scope="col">Valor Unitário</th>
+				            <th scope="col">Qtd Ofertada</th>
+				            <th scope="col">Data Vigência</th>
+			            </tr>
+			        </thead>
+			        <tbody>
+				        <form action="" method="GET">
+
+					        {% for ata in pagina_atas.object_list %}
+				            <tr class="small" >
+					            <td>{{ ata.descricao_complementar_p1 }} <br> <b>Fabricante:</b> {{ ata.fabricante }} - <b>Marca:</b> {{ ata.marca }}</td>
+					            <td>{{ ata.nome_fornecedor }}</td>
+					            <td>{{ ata.gerenciador_nome }}</td>
+					            <td>{{ ata.uf }}</td>
+					            <td>{{ ata.certame }}</td>
+					            <td>{{ ata.item|slice:"17:24" }}</td>
+					            <td>{{ ata.valor_unitario }}</td>
+					            <td>{{ ata.qtd_ofertada }}</td>
+					            <td>{{ ata.data_final_vigencia }}</td>
+				            </tr>
+				            {% endfor %}
+				        </form>
+			        </tbody>
+		        </table>
+
+	            <nav aria-label="Paginação">
+	              <ul class="pagination justify-content-center">
+					{% if pagina_atas.has_previous %}
+						<li>
+						    <a class="page-link" href="?pagina=1&q={{ request.GET.q }}">&laquo; Primeira</a>
+						</li>
+						<li>
+						    <a class="page-link" href="?pagina={{ pagina_atas.previous_page_number }}&q={{ request.GET.q }}">Anterior</a>
+						</li>
+					{% endif %}
+
+						<li class="page-link">
+							Página {{ pagina_atas.number }} de {{ pagina_atas.paginator.num_pages }}
+						</li>
+
+					{% if pagina_atas.has_next %}
+					    <a class="page-link" href="?pagina={{ pagina_atas.next_page_number }}&q={{ request.GET.q }}">Próxima</a>
+					    <a class="page-link" href="?pagina={{ pagina_atas.paginator.num_pages }}&q={{ request.GET.q }}">Última &raquo;</a>
+					{% endif %}
+	              </ul>
+	            </nav>
+	            <nav aria-label="Paginação">
+	              <ul class="pagination justify-content-center">
+		              Total de registros: {{ totalregistros }}
+	              </ul>
+	            </nav>
+
+
+		    </div>
+        </div>
+    {% endblock %}

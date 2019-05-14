@@ -1,0 +1,21 @@
+{% extends 'inicio.html' %}    
+{% load static %}
+    
+{% block conteudo %}
+
+{% if erro %}
+<span>Ocorreu um erro!</span>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+<input type="file" name="dbfile">
+<button type="submit">Upload</button>
+</form>
+    
+{% if uploaded_file_url %}
+<p>File upload location: <a href="{{ demo_file_url }}">{{ demo_file_url }}</a></p>
+{% endif %}
+    
+<p><a href="{% url 'inicio' %}">Return to home</a></p>
+{% endblock %}
