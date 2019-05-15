@@ -16,11 +16,8 @@ def relatorio(request):
     e = request.POST.get('e')
 
     ckbitens = request.session.get('listaitens')
-    #print_ln(ckbitens)
 
     atas = Ata.objects.filter(id__in=ckbitens)
-    #for indice, valor in enumerate(ckbitens):
-    #    atas = atas.objects.filter(id=ckbitens[indice])
 
     try:
         pagina = int(request.GET.get('pagina'))
@@ -71,11 +68,12 @@ def busca(request):
     v = request.GET.get('v')
     p = request.GET.get('p')
     e = request.GET.get('e')
+    resetasessao = request.GET.get('resetasessao')
     additem = request.GET.get('additem')
     atas = Ata.objects.all()
 
-    #itemsessao = request.session.get('listaitens', additem)
-    #request.session['listaitens'] = additem
+    if resetasessao:
+        del request.session['listaitens']
 
     itemsessao = request.session.get('listaitens')
 
