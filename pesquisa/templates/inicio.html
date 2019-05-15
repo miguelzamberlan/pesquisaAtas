@@ -36,110 +36,128 @@
 
     </div>
 
+
+	<div class="container-fluid p-3 p-md-5 text-white rounded bg-dark">
+		<div class="row">
+			{% if not relatorio %}
+			<div role="main" class="col-md-8">
+		        <form action="" method="GET">
+		            <div class="form-row">
+				        <div class="form-group col-md-6">
+					        <label for="Descricao">Descrição Complementar</label>
+					        <input type="text" class="form-control form-control-sm" placeholder="Pesquisar" name="q" value="{{ request.GET.q }}" />
+					        <small id="descricaoHelp" class="form-text text-muted">O termo será pesquisado na descrição complementar 1 e 2</small>
+				        </div>
+				        <div class="form-group col-md-6">
+					        <label for="Descricao">Descrição Catálogo</label>
+					        <input type="text" class="form-control form-control-sm" placeholder="Pesquisar" name="qc" value="{{ request.GET.qc }}" />
+					        <small id="descricaoHelp" class="form-text text-muted">O termo será pesquisado na descrição do catálogo dos itens</small>
+				        </div>
+		            </div>
+					<div class="form-row">
+				        <div class="form-group col-md-4">
+					        <label for="Valor">Valor</label>
+					        <input type="text" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ request.GET.v }}" />
+					        <small id="valorHelp" class="form-text text-muted">Digite o valor de referência do item, será pesquisado valores com até 30% do valor para cima e para baixo.</small>
+				        </div>
+				        <div class="form-group col-md-3">
+					        <label for="Valor">Percentual</label>
+					        <input maxlength="3" type="text" class="form-control form-control-sm" placeholder="Percentual" name="p" value="{{ request.GET.p }}" />
+					        <small id="valorHelp" class="form-text text-muted">Digite o percentual para substituir os 30% do item anterior.</small>
+				        </div>
+				        <div class="form-group col-md-2">
+					        <label for="Valor">Estado</label>
+
+							<select class="form-control form-control-sm " placeholder="Estado"  name="e" value="{{ request.GET.e }}">
+								<option value="">-----</option>
+								<option value="AC" {% if request.GET.e == "AC"%} selected {% endif %}>Acre</option>
+								<option value="AL" {% if request.GET.e == "AL"%} selected {% endif %}>Alagoas</option>
+								<option value="AP" {% if request.GET.e == "AP"%} selected {% endif %}>Amapá</option>
+								<option value="AM" {% if request.GET.e == "AM"%} selected {% endif %}>Amazonas</option>
+								<option value="BA" {% if request.GET.e == "BA"%} selected {% endif %}>Bahia</option>
+								<option value="CE" {% if request.GET.e == "CE"%} selected {% endif %}>Ceará</option>
+								<option value="DF" {% if request.GET.e == "DF"%} selected {% endif %}>Distrito Federal</option>
+								<option value="ES" {% if request.GET.e == "ES"%} selected {% endif %}>Espírito Santo</option>
+								<option value="GO" {% if request.GET.e == "GO"%} selected {% endif %}>Goiás</option>
+								<option value="MA" {% if request.GET.e == "MA"%} selected {% endif %}>Maranhão</option>
+								<option value="MT" {% if request.GET.e == "MT"%} selected {% endif %}>Mato Grosso</option>
+								<option value="MS" {% if request.GET.e == "MS"%} selected {% endif %}>Mato Grosso do Sul</option>
+								<option value="MG" {% if request.GET.e == "MG"%} selected {% endif %}>Minas Gerais</option>
+								<option value="PA" {% if request.GET.e == "PA"%} selected {% endif %}>Pará</option>
+								<option value="PB" {% if request.GET.e == "PB"%} selected {% endif %}>Paraíba</option>
+								<option value="PR" {% if request.GET.e == "PR"%} selected {% endif %}>Paraná</option>
+								<option value="PE" {% if request.GET.e == "PE"%} selected {% endif %}>Pernambuco</option>
+								<option value="PI" {% if request.GET.e == "PI"%} selected {% endif %}>Piauí</option>
+								<option value="RJ" {% if request.GET.e == "RJ"%} selected {% endif %}>Rio de Janeiro</option>
+								<option value="RN" {% if request.GET.e == "RN"%} selected {% endif %}>Rio Grande do Norte</option>
+								<option value="RS" {% if request.GET.e == "RS"%} selected {% endif %}>Rio Grande do Sul</option>
+								<option value="RO" {% if request.GET.e == "RO"%} selected {% endif %}>Rondônia</option>
+								<option value="RR" {% if request.GET.e == "RR"%} selected {% endif %}>Roraima</option>
+								<option value="SC" {% if request.GET.e == "SC"%} selected {% endif %}>Santa Catarina</option>
+								<option value="SP" {% if request.GET.e == "SP"%} selected {% endif %}>São Paulo</option>
+								<option value="SE" {% if request.GET.e == "SE"%} selected {% endif %}>Sergipe</option>
+								<option value="TO" {% if request.GET.e == "TO"%} selected {% endif %}>Tocantins</option>
+							</select>
+					        <small id="valorHelp" class="form-text text-muted">Digite o Estado do Órgão Gerenciador.</small>
+				        </div>
+				        <div class="form-group {% if not relatorio %} col-md-3 {% else %} col-md-12 {% endif %}">
+					        <label for="Valor">Quais registros?</label>
+							<div class="btn-group btn-group-toggle" data-toggle="buttons">
+							  <label class="btn btn-secondary {% if request.GET.qa == "T" %} active {% endif %}">
+							    <input type="radio" name="qa" id="T" value="T" autocomplete="on" {% if request.GET.qa == "T" %} checked {% endif %} /> Todos
+							  </label>
+							  <label class="btn btn-secondary {% if request.GET.qa == "RO" %} active {% endif %}">
+							    <input type="radio" name="qa" id="RO" value="RO" autocomplete="on"  {% if request.GET.qa == "RO" %} checked {% endif %} /> Rondônia
+							  </label>
+							  <label class="btn btn-secondary {% if request.GET.qa == "IFRO" %} active {% endif %}">
+							    <input type="radio" name="qa" id="IFRO" value="IFRO" autocomplete="on" {% if request.GET.qa == "IFRO" %} checked {% endif %} /> IFRO
+							  </label>
+							</div>
+					        <small id="valorHelp" class="form-text text-muted">Retorna somente registros do IFRO</small>
+				        </div>
+
+					</div>
+			        <input class="btn btn-primary" type="submit" name="filtrar" value="Filtrar">
+
+		        </form>
+
+			</div>
+			{% endif %}
+			<aside role="complementary" class="alert-dark rounded col-md-4">
+				<div class="form-group">
+					<div class="form-row ">
+				        <div class="form-group col-md-6" >
+					        <label for="precomedio">Total:</label>
+					        <input disabled="True" type="text" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ valortotalunitario}}" />
+					        <small id="valorHelp" class="form-text text-muted">Total dos itens por valor unitário.</small>
+				        </div>
+				        <div class="form-group col-md-6">
+					        <label for="Valor">Menor</label>
+					        <input  disabled="True" type="text" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ menorvalor }}" />
+					        <small id="valorHelp" class="form-text text-muted">Menor valor entre a pesquisa.</small>
+				        </div>
+					</div>
+					<div class="form-row">
+				        <div class="form-group col-md-6">
+					        <label for="Valor">Maior</label>
+					        <input  disabled="True" type="text" class="form-control form-control-sm " placeholder="Percentual" name="p" value="{{ maiorvalor }}" />
+					        <small id="valorHelp" class="form-text text-muted">Maior valor entre a pesquisa</small>
+				        </div>
+				        <div class="form-group col-md-6">
+					        <label for="Valor">Média</label>
+					        <input  disabled="True" type="text" class="form-control form-control-sm" placeholder="Estado" name="e" value="{{ mediavalor }}" />
+					        <small id="valorHelp" class="form-text text-muted">Média de valor entre a pesquisa</small>
+				        </div>
+					</div>
+				</div>
+			</aside>
+		</div>
+	</div>
+
     {% block conteudo %}
 
-		<div class="container-fluid p-3 p-md-5 text-white rounded bg-dark">
-			<div class="row">
-				<div role="main" class="col-md-8">
-			        <form action="" method="GET">
-			            <div class="form-row">
-					        <div class="form-group col-md-6">
-						        <label for="Descricao">Descrição Complementar</label>
-						        <input type="text" class="form-control form-control-sm" placeholder="Pesquisar" name="q" value="{{ request.GET.q }}" />
-						        <small id="descricaoHelp" class="form-text text-muted">O termo será pesquisado na descrição complementar 1 e 2</small>
-					        </div>
-					        <div class="form-group col-md-6">
-						        <label for="Descricao">Descrição Catálogo</label>
-						        <input type="text" class="form-control form-control-sm" placeholder="Pesquisar" name="qc" value="{{ request.GET.qc }}" />
-						        <small id="descricaoHelp" class="form-text text-muted">O termo será pesquisado na descrição do catálogo dos itens</small>
-					        </div>
-			            </div>
-						<div class="form-row">
-					        <div class="form-group col-md-6">
-						        <label for="Valor">Valor</label>
-						        <input type="text" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ request.GET.v }}" />
-						        <small id="valorHelp" class="form-text text-muted">Digite o valor de referência do item, será pesquisado valores com até 30% do valor para cima e para baixo.</small>
-					        </div>
-					        <div class="form-group col-md-3">
-						        <label for="Valor">Percentual</label>
-						        <input maxlength="3" type="text" class="form-control form-control-sm" placeholder="Percentual" name="p" value="{{ request.GET.p }}" />
-						        <small id="valorHelp" class="form-text text-muted">Digite o percentual para substituir os 30% do item anterior.</small>
-					        </div>
-					        <div class="form-group col-md-3">
-						        <label for="Valor">Estado</label>
 
-								<select class="form-control form-control-sm " placeholder="Estado"  name="e" value="{{ request.GET.e }}">
-									<option value="">-----</option>
-									<option value="AC" {% if request.GET.e == "AC"%} selected {% endif %}>Acre</option>
-									<option value="AL" {% if request.GET.e == "AL"%} selected {% endif %}>Alagoas</option>
-									<option value="AP" {% if request.GET.e == "AP"%} selected {% endif %}>Amapá</option>
-									<option value="AM" {% if request.GET.e == "AM"%} selected {% endif %}>Amazonas</option>
-									<option value="BA" {% if request.GET.e == "BA"%} selected {% endif %}>Bahia</option>
-									<option value="CE" {% if request.GET.e == "CE"%} selected {% endif %}>Ceará</option>
-									<option value="DF" {% if request.GET.e == "DF"%} selected {% endif %}>Distrito Federal</option>
-									<option value="ES" {% if request.GET.e == "ES"%} selected {% endif %}>Espírito Santo</option>
-									<option value="GO" {% if request.GET.e == "GO"%} selected {% endif %}>Goiás</option>
-									<option value="MA" {% if request.GET.e == "MA"%} selected {% endif %}>Maranhão</option>
-									<option value="MT" {% if request.GET.e == "MT"%} selected {% endif %}>Mato Grosso</option>
-									<option value="MS" {% if request.GET.e == "MS"%} selected {% endif %}>Mato Grosso do Sul</option>
-									<option value="MG" {% if request.GET.e == "MG"%} selected {% endif %}>Minas Gerais</option>
-									<option value="PA" {% if request.GET.e == "PA"%} selected {% endif %}>Pará</option>
-									<option value="PB" {% if request.GET.e == "PB"%} selected {% endif %}>Paraíba</option>
-									<option value="PR" {% if request.GET.e == "PR"%} selected {% endif %}>Paraná</option>
-									<option value="PE" {% if request.GET.e == "PE"%} selected {% endif %}>Pernambuco</option>
-									<option value="PI" {% if request.GET.e == "PI"%} selected {% endif %}>Piauí</option>
-									<option value="RJ" {% if request.GET.e == "RJ"%} selected {% endif %}>Rio de Janeiro</option>
-									<option value="RN" {% if request.GET.e == "RN"%} selected {% endif %}>Rio Grande do Norte</option>
-									<option value="RS" {% if request.GET.e == "RS"%} selected {% endif %}>Rio Grande do Sul</option>
-									<option value="RO" {% if request.GET.e == "RO"%} selected {% endif %}>Rondônia</option>
-									<option value="RR" {% if request.GET.e == "RR"%} selected {% endif %}>Roraima</option>
-									<option value="SC" {% if request.GET.e == "SC"%} selected {% endif %}>Santa Catarina</option>
-									<option value="SP" {% if request.GET.e == "SP"%} selected {% endif %}>São Paulo</option>
-									<option value="SE" {% if request.GET.e == "SE"%} selected {% endif %}>Sergipe</option>
-									<option value="TO" {% if request.GET.e == "TO"%} selected {% endif %}>Tocantins</option>
-								</select>
-						        <small id="valorHelp" class="form-text text-muted">Digite o Estado do Órgão Gerenciador.</small>
-					        </div>
-						</div>
-				        <input class="btn btn-primary" type="submit" name="filtrar" value="Filtrar">
-
-			        </form>
-				</div>
-				<aside role="complementary" class="alert-dark rounded col-md-4">
-					<div class="form-group">
-						<div class="form-row ">
-					        <div class="form-group col-md-6" >
-						        <label for="precomedio">Total:</label>
-						        <input disabled="True" type="text" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ valortotalunitario}}" />
-						        <small id="valorHelp" class="form-text text-muted">Total dos itens por valor unitário.</small>
-					        </div>
-					        <div class="form-group col-md-6">
-						        <label for="Valor">Menor</label>
-						        <input  disabled="True" type="text" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ menorvalor }}" />
-						        <small id="valorHelp" class="form-text text-muted">Menor valor entre a pesquisa.</small>
-					        </div>
-						</div>
-						<div class="form-row">
-					        <div class="form-group col-md-6">
-						        <label for="Valor">Maior</label>
-						        <input  disabled="True" type="text" class="form-control form-control-sm " placeholder="Percentual" name="p" value="{{ maiorvalor }}" />
-						        <small id="valorHelp" class="form-text text-muted">Maior valor entre a pesquisa</small>
-					        </div>
-					        <div class="form-group col-md-6">
-						        <label for="Valor">Média</label>
-						        <input  disabled="True" type="text" class="form-control form-control-sm" placeholder="Estado" name="e" value="{{ mediavalor }}" />
-						        <small id="valorHelp" class="form-text text-muted">Média de valor entre a pesquisa</small>
-					        </div>
-						</div>
-					</div>
-				</aside>
-			</div>
-		</div>
-
-		<div class="container-fluid p-2 p-md-4">
-			<form action="relatorio/" method="POST">
-			{% csrf_token %}
-
+		<div class="container-fluid p-3 p-md-5 ">
 			<div class="row">
 				<div role="main" class="col-md-10">
 		            <div class="form-row">
@@ -150,7 +168,7 @@
 					{% for itens in itensselecionados %}
 		            <div class="form-row small p-0">
 			            <div class="form-group m-sm-0 col-md-12">
-					            <a  class="btn btn-info btn-sm" href="?q={{ request.GET.q }}&qc={{ request.GET.qc }}&v={{ request.GET.v }}&p={{ request.GET.p }}&e={{ request.GET.e }}&delitem={{ itens.id }}" >Del</a> - {{ itens.descricao_complementar_p1|slice:"0:180" }}
+					            <a  class="btn btn-info btn-sm" href="?q={{ request.GET.q }}&qc={{ request.GET.qc }}&v={{ request.GET.v }}&p={{ request.GET.p }}&e={{ request.GET.e }}&qa={{ request.GET.qa }}&delitem={{ itens.id }}" >Del</a> - {{ itens.descricao_complementar_p1|slice:"0:180" }}
 			            </div>
 		            </div>
 					{% endfor %}
@@ -164,7 +182,7 @@
 						</div>
 						<div class="form-row ">
 							<div class="form-group col-md-6">
-								<input class="btn btn-info" type="submit" name="filtrar" value="Gerar Relatório" />
+								<a class="btn btn-info" href="relatorio/" >Gerar Relatório</a>
 							</div>
 						</div>
 						<div class="form-row ">
@@ -178,11 +196,6 @@
 		</div>
 
 	    <div class="container-fluid p-3 p-md-5 ">
-
-			<input type="hidden" class="form-control form-control-sm" placeholder="Pesquisar" name="q" value="{{ request.GET.q }}" />
-			<input type="hidden" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ request.GET.v }}" />
-			<input type="hidden" class="form-control form-control-sm" placeholder="Percentual" name="p" value="{{ request.GET.p }}" />
-			<input type="hidden" class="form-control form-control-sm" placeholder="Estado" name="e" value="{{ request.GET.e }}" />
 
 	        <h1>Atas</h1>
 
@@ -208,7 +221,7 @@
 				        <tbody>
 					        {% for ata in pagina_atas.object_list %}
 				            <tr class="small" >
-					            <td><a  class="btn btn-info btn-sm" href="?q={{ request.GET.q }}&qc={{ request.GET.qc }}&v={{ request.GET.v }}&p={{ request.GET.p }}&e={{ request.GET.e }}&additem={{ ata.id }}" >Add</a> </td>
+					            <td><a  class="btn btn-info btn-sm" href="?q={{ request.GET.q }}&qc={{ request.GET.qc }}&v={{ request.GET.v }}&p={{ request.GET.p }}&e={{ request.GET.e }}&qa={{ request.GET.qa }}&additem={{ ata.id }}" >Add</a> </td>
 					            <td>{{ ata.descricao_complementar_p1 }} {{ ata.descricao_complementar_p2 }} </td>
 					            <td>{{ ata.fabricante }}</td>
 					            <td>{{ ata.marca }}</td>
@@ -253,8 +266,6 @@
 			              Total de registros: {{ totalregistros }}
 		              </ul>
 		            </nav>
-
-			</form>
 		    </div>
         </div>
     {% endblock %}

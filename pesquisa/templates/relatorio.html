@@ -5,49 +5,6 @@
 		<div id="actions" class="container-fluid p-3 p-md5">
 		<h3>Resultado da busca e seleção</h3>
 			<div class="row">
-				<div class="form-group col-md-4">
-					<label for="campo1">Descrição</label>
-					<input disabled="True" type="text" class="form-control form-control-sm" placeholder="Pesquisar" name="q" value="{{ request.POST.q }}" />
-				</div>
-
-				<div class="form-group col-md-3">
-					<label for="campo2">Valor Referência</label>
-					<input disabled="True" type="text" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ request.POST.v }}" />
-				</div>
-
-				<div class="form-group col-md-3">
-					<label for="campo3">Percentual</label>
-					<input disabled="True" type="text" class="form-control form-control-sm" placeholder="Percentual" name="p" value="{{ request.POST.p }}" />
-				</div>
-
-				<div class="form-group col-md-2">
-					<label for="campo3">Estado</label>
-					<input disabled="True" type="text" class="form-control form-control-sm" placeholder="Estado" name="e" value="{{ request.POST.e }}" />
-				</div>
-			</div>
-			<div class="row">
-		        <div class="form-group col-md-3" >
-			        <label for="precomedio">Total:</label>
-			        <input disabled="True" type="text" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ valortotalunitario}}" />
-			        <small id="valorHelp" class="form-text text-muted">Total dos itens por valor unitário.</small>
-		        </div>
-		        <div class="form-group col-md-3">
-			        <label for="Valor">Menor</label>
-			        <input  disabled="True" type="text" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ menorvalor }}" />
-			        <small id="valorHelp" class="form-text text-muted">Menor valor entre a pesquisa.</small>
-		        </div>
-		        <div class="form-group col-md-3">
-			        <label for="Valor">Maior</label>
-			        <input  disabled="True" type="text" class="form-control form-control-sm" placeholder="Percentual" name="p" value="{{ maiorvalor }}" />
-			        <small id="valorHelp" class="form-text text-muted">Maior valor entre a pesquisa</small>
-		        </div>
-		        <div class="form-group col-md-3">
-			        <label for="Valor">Média</label>
-			        <input  disabled="True" type="text" class="form-control form-control-sm" placeholder="Estado" name="e" value="{{ mediavalor }}" />
-			        <small id="valorHelp" class="form-text text-muted">Média de valor entre a pesquisa</small>
-		        </div>
-			</div>
-			<div class="row">
 				<div class="col-md-9">
 					<a href="javascript:history.back()" class="btn btn-info">Voltar</a>
 				</div>

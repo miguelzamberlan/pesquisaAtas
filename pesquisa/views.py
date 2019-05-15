@@ -11,10 +11,6 @@ from datetime import datetime
 # Create your views here.
 
 def relatorio(request):
-    q = request.POST.get('q')
-    v = request.POST.get('v')
-    p = request.POST.get('p')
-    e = request.POST.get('e')
 
     ckbitens = request.session.get('listaitens')
 
@@ -58,8 +54,9 @@ def relatorio(request):
         'maiorvalor': maiorvalor,
         'mediavalor': mediavalor,
         'datahora' : datetime.today(),
+        'relatorio': True,
     }
-    #contexto['cursos'] = cursos
+
     return render(
         request, 'relatorio.html', contexto
     )
@@ -70,6 +67,7 @@ def busca(request):
     v = request.GET.get('v')
     p = request.GET.get('p')
     e = request.GET.get('e')
+    qa = request.GET.get('qa')
     resetasessao = request.GET.get('resetasessao')
     additem = request.GET.get('additem')
     delitem = request.GET.get('delitem')
@@ -108,6 +106,13 @@ def busca(request):
 
     if request.session.has_key('listaitens'):
         itens_selecionados = Ata.objects.filter(id__in=itens_selecionados_sessao)
+
+    # Se for solicitado filtro por tipo de ATA ('RO','T','IFRO')
+    if qa:
+        if qa == 'RO':
+            atas = atas.filter(uf=qa)
+        if qa == 'IFRO':
+            atas = atas.filter(gerenciador='26421')
 
     # Se for solicitado filtro por descrição do catalogo
     if qc:
@@ -182,12 +187,13 @@ def busca(request):
         'pagina_atas': pagina_atas,
         'paginador': paginador,
         'totalregistros': totalregistros,
-        'valortotalunitario': round(valortotalunitario,2),
-        'menorvalor': round(menorvalor,2),
-        'maiorvalor': round(maiorvalor,2),
-        'mediavalor': round(mediavalor,2),
+        'valortotalunitario': round(valortotalunitario,2) if valortotalunitario != None else 0,
+        'menorvalor': round(menorvalor,2) if menorvalor != None else 0,
+        'maiorvalor': round(maiorvalor,2) if maiorvalor != None else 0,
+        'mediavalor': round(mediavalor,2) if mediavalor != None else 0,
         'itensselecionados': itens_selecionados,
         'tesitem': itens_selecionados_sessao,
+        'relatorio': False,
     }
 
     return render(
