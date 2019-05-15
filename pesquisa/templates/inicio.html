@@ -155,7 +155,7 @@
 					        {% for ata in pagina_atas.object_list %}
 				            <tr class="small" >
 				                <td><input type="checkbox" value="{{ ata.id }}" id="{{ ata.id }}" name="ckbitem" ></td>
-					            <td>{{ ata.descricao_complementar_p1 }}</td>
+					            <td>{{ ata.descricao_complementar_p1 }} {{ ata.descricao_complementar_p2 }} </td>
 					            <td>{{ ata.fabricante }}</td>
 					            <td>{{ ata.marca }}</td>
 					            <td>{{ ata.nome_fornecedor }}</td>
