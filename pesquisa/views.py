@@ -154,7 +154,7 @@ def busca(request):
         'menorvalor': menorvalor,
         'maiorvalor': maiorvalor,
         'mediavalor': mediavalor,
-        'listaitens': request.session['listaitens'],
+        'listaitens': itemsessao,
     }
     #contexto['cursos'] = cursos
     return render(
