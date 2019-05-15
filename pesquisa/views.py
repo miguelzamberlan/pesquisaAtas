@@ -78,6 +78,9 @@ def busca(request):
 
     itemsessao = request.session.get('listaitens')
 
+    if itemsessao == None:
+        itemsessao = []
+
     if additem:
         if itemsessao.count() > 0:
             itemsessao.append(additem)
