@@ -102,7 +102,7 @@
 				        <div class="form-group {% if not relatorio %} col-md-3 {% else %} col-md-12 {% endif %}">
 					        <label for="Valor">Quais registros?</label>
 							<div class="btn-group btn-group-toggle" data-toggle="buttons">
-							  <label class="btn btn-secondary {% if request.GET.qa == "T" %} active {% endif %}">
+							  <label class="btn btn-secondary {% if request.GET.qa != "RO" and request.GET.qa != "IFRO" %} active {% endif %}">
 							    <input type="radio" name="qa" id="T" value="T" autocomplete="on" {% if request.GET.qa == "T" %} checked {% endif %} /> Todos
 							  </label>
 							  <label class="btn btn-secondary {% if request.GET.qa == "RO" %} active {% endif %}">
