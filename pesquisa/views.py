@@ -66,6 +66,7 @@ def relatorio(request):
 
 def busca(request):
     q = request.GET.get('q')
+    qc = request.GET.get('qc')
     v = request.GET.get('v')
     p = request.GET.get('p')
     e = request.GET.get('e')
@@ -78,6 +79,12 @@ def busca(request):
             desc_catalogo = Q(desc_catalogo__icontains=x)
             atas = atas.filter(descricao | desc_catalogo | descricao2)
         # cursos = watson.filter(Curso, q)
+
+    if qc:
+        qc = qc.split(' ')
+        for x in qc:
+            desc_catalogo = Q(desc_catalogo__icontains=x)
+            atas = atas.filter(desc_catalogo)
 
     if v:
         if p:
