@@ -15,7 +15,7 @@ def relatorio(request):
     p = request.POST.get('p')
     e = request.POST.get('e')
 
-    ckbitens = request.POST.getlist('ckbitem')
+    ckbitens = request.POST.getlist('its')
 
     atas = Ata.objects.filter(id__in=ckbitens)
     #for indice, valor in enumerate(ckbitens):

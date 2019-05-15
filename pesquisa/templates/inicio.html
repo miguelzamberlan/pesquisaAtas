@@ -131,7 +131,7 @@
 	    <h1>Atas</h1>
 			<form action="relatorio/" method="POST">
 				{% csrf_token %}
-				<input type="text" class="form-control form-control-sm" placeholder="Pesquisar" name="its" value="{{ listaitens }}" />
+				<input disabled="True" type="text" class="form-control form-control-sm" placeholder="Pesquisar" name="its" value="{{ listaitens }}" />
 				<input type="hidden" class="form-control form-control-sm" placeholder="Pesquisar" name="q" value="{{ request.GET.q }}" />
 				<input type="hidden" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ request.GET.v }}" />
 				<input type="hidden" class="form-control form-control-sm" placeholder="Percentual" name="p" value="{{ request.GET.p }}" />
@@ -162,7 +162,7 @@
 				        <tbody>
 					        {% for ata in pagina_atas.object_list %}
 				            <tr class="small" >
-					            <td><input type="checkbox" value="{{ ata.id }}" id="{{ ata.id }}" name="ckbitem" ><a href="?q={{ request.GET.q }}&qc={{ request.GET.qc }}&v={{ request.GET.v }}&p={{ request.GET.p }}&e={{ request.GET.e }}&additem={{ ata.id }}" >Add</a> </td>
+					            <td><a href="?q={{ request.GET.q }}&qc={{ request.GET.qc }}&v={{ request.GET.v }}&p={{ request.GET.p }}&e={{ request.GET.e }}&additem={{ ata.id }}" >Add</a> </td>
 					            <td>{{ ata.descricao_complementar_p1 }} {{ ata.descricao_complementar_p2 }} </td>
 					            <td>{{ ata.fabricante }}</td>
 					            <td>{{ ata.marca }}</td>
