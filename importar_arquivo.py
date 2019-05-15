@@ -13,7 +13,8 @@ con.commit()
 
 
 print("Lendo o arquivo CSV...")
-arquivos = ['atas_vigentesN.csv', 'atas_vigentesCO.csv', 'atas_vigentesSE.csv']
+#arquivos = ['atas_vigentesN.csv', 'atas_vigentesCO.csv', 'atas_vigentesSE.csv']
+arquivos = ['atas_vigentes-test.csv']
 
 for arquivo in arquivos:
     print(arquivo)

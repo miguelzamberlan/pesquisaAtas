@@ -12,18 +12,22 @@
     </title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{% static "bootstrap.min.css" %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-    <link href="{% static "blog.css" %}" rel="stylesheet">
+
   </head>
 
   <body>
 
     <div class="container-fluid">
       <header class="blog-header py-3">
-        <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="h1 row flex-nowrap justify-content-between align-items-center">
           <div class="col-8">
             <a class="blog-header-logo text-dark" href="/">IFRO - Pesquisa de Atas</a>
           </div>
@@ -36,7 +40,7 @@
 
 		<div class="container-fluid p-3 p-md-5 text-white rounded bg-dark">
 			<div class="row">
-				<div role="main" class="col-md-10">
+				<div role="main" class="col-md-8">
 			        <form action="" method="GET">
 			            <div class="form-row">
 					        <div class="form-group col-md-6">
@@ -98,49 +102,90 @@
 					        </div>
 						</div>
 				        <input class="btn btn-primary" type="submit" name="filtrar" value="Filtrar">
+
 			        </form>
 				</div>
-				<aside role="complementary" class="col-md-2">
+				<aside role="complementary" class="alert-dark rounded col-md-4">
 					<div class="form-group">
-				        <div class="form-group " >
-					        <label for="precomedio">Total:</label>
-					        <input disabled="True" type="text" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ valortotalunitario}}" />
-					        <small id="valorHelp" class="form-text text-muted">Total dos itens por valor unitário.</small>
-				        </div>
-				        <div class="form-group ">
-					        <label for="Valor">Menor</label>
-					        <input  disabled="True" type="text" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ menorvalor }}" />
-					        <small id="valorHelp" class="form-text text-muted">Menor valor entre a pesquisa.</small>
-				        </div>
-				        <div class="form-group ">
-					        <label for="Valor">Maior</label>
-					        <input  disabled="True" type="text" class="form-control form-control-sm" placeholder="Percentual" name="p" value="{{ maiorvalor }}" />
-					        <small id="valorHelp" class="form-text text-muted">Maior valor entre a pesquisa</small>
-				        </div>
-				        <div class="form-group ">
-					        <label for="Valor">Média</label>
-					        <input  disabled="True" type="text" class="form-control form-control-sm" placeholder="Estado" name="e" value="{{ mediavalor }}" />
-					        <small id="valorHelp" class="form-text text-muted">Média de valor entre a pesquisa</small>
-				        </div>
+						<div class="form-row ">
+					        <div class="form-group col-md-6" >
+						        <label for="precomedio">Total:</label>
+						        <input disabled="True" type="text" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ valortotalunitario}}" />
+						        <small id="valorHelp" class="form-text text-muted">Total dos itens por valor unitário.</small>
+					        </div>
+					        <div class="form-group col-md-6">
+						        <label for="Valor">Menor</label>
+						        <input  disabled="True" type="text" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ menorvalor }}" />
+						        <small id="valorHelp" class="form-text text-muted">Menor valor entre a pesquisa.</small>
+					        </div>
+						</div>
+						<div class="form-row">
+					        <div class="form-group col-md-6">
+						        <label for="Valor">Maior</label>
+						        <input  disabled="True" type="text" class="form-control form-control-sm " placeholder="Percentual" name="p" value="{{ maiorvalor }}" />
+						        <small id="valorHelp" class="form-text text-muted">Maior valor entre a pesquisa</small>
+					        </div>
+					        <div class="form-group col-md-6">
+						        <label for="Valor">Média</label>
+						        <input  disabled="True" type="text" class="form-control form-control-sm" placeholder="Estado" name="e" value="{{ mediavalor }}" />
+						        <small id="valorHelp" class="form-text text-muted">Média de valor entre a pesquisa</small>
+					        </div>
+						</div>
 					</div>
 				</aside>
 			</div>
 		</div>
 
-	    <div class="container-fluid">
-	    <h1>Atas</h1>
+		<div class="container-fluid p-2 p-md-4">
 			<form action="relatorio/" method="POST">
-				{% csrf_token %}
-				<input disabled="True" type="text" class="form-control form-control-sm" placeholder="Pesquisar" name="its" value="{{ listaitens }}" />
-				<input type="hidden" class="form-control form-control-sm" placeholder="Pesquisar" name="q" value="{{ request.GET.q }}" />
-				<input type="hidden" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ request.GET.v }}" />
-				<input type="hidden" class="form-control form-control-sm" placeholder="Percentual" name="p" value="{{ request.GET.p }}" />
-				<input type="hidden" class="form-control form-control-sm" placeholder="Estado" name="e" value="{{ request.GET.e }}" />
-		        <div class="form-group ">
-			        <label for="Valor">Gerar Relatório com os selecionados</label>
-			        <input class="btn btn-info" type="submit" name="filtrar" value="Emitir" />
-			        <a href="?resetasessao=True" >Reseta</a>
-		        </div>
+			{% csrf_token %}
+
+			<div class="row">
+				<div role="main" class="col-md-10">
+		            <div class="form-row">
+			            <div class="form-group col-md-12">
+				            <label for="Valor">Itens adicionados para relatório:</label>
+			            </div>
+		            </div>
+					{% for itens in itensselecionados %}
+		            <div class="form-row small p-0">
+			            <div class="form-group m-sm-0 col-md-12">
+					            <a  class="btn btn-info btn-sm" href="?q={{ request.GET.q }}&qc={{ request.GET.qc }}&v={{ request.GET.v }}&p={{ request.GET.p }}&e={{ request.GET.e }}&delitem={{ itens.id }}" >Del</a> - {{ itens.descricao_complementar_p1|slice:"0:180" }}
+			            </div>
+		            </div>
+					{% endfor %}
+				</div>
+				<aside role="complementary" class="col-md-2">
+					<div class="form-group">
+						<div class="form-row ">
+							<div class="form-group col-md-6">
+								<label>Opções</label>
+							</div>
+						</div>
+						<div class="form-row ">
+							<div class="form-group col-md-6">
+								<input class="btn btn-info" type="submit" name="filtrar" value="Gerar Relatório" />
+							</div>
+						</div>
+						<div class="form-row ">
+					        <div class="form-group col-md-6" >
+						        <a class="btn btn-danger" href="?resetasessao=True" >Limpa lista itens</a>
+					        </div>
+						</div>
+					</div>
+				</aside>
+			</div>
+		</div>
+
+	    <div class="container-fluid p-3 p-md-5 ">
+
+			<input type="hidden" class="form-control form-control-sm" placeholder="Pesquisar" name="q" value="{{ request.GET.q }}" />
+			<input type="hidden" class="form-control form-control-sm" placeholder="Valor" name="v" value="{{ request.GET.v }}" />
+			<input type="hidden" class="form-control form-control-sm" placeholder="Percentual" name="p" value="{{ request.GET.p }}" />
+			<input type="hidden" class="form-control form-control-sm" placeholder="Estado" name="e" value="{{ request.GET.e }}" />
+
+	        <h1>Atas</h1>
+
 			    <nav class="table-responsive">
 			        <table class="table table-striped table-hover table-sm table-condensed">
 				        <thead class="thead-dark">
@@ -163,7 +208,7 @@
 				        <tbody>
 					        {% for ata in pagina_atas.object_list %}
 				            <tr class="small" >
-					            <td><a href="?q={{ request.GET.q }}&qc={{ request.GET.qc }}&v={{ request.GET.v }}&p={{ request.GET.p }}&e={{ request.GET.e }}&additem={{ ata.id }}" >Add</a> </td>
+					            <td><a  class="btn btn-info btn-sm" href="?q={{ request.GET.q }}&qc={{ request.GET.qc }}&v={{ request.GET.v }}&p={{ request.GET.p }}&e={{ request.GET.e }}&additem={{ ata.id }}" >Add</a> </td>
 					            <td>{{ ata.descricao_complementar_p1 }} {{ ata.descricao_complementar_p2 }} </td>
 					            <td>{{ ata.fabricante }}</td>
 					            <td>{{ ata.marca }}</td>
