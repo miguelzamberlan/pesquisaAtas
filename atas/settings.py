@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['.miguelzamberlan.com.br','localhost','127.0.0.1']
 
+SESSION_SAVE_EVERY_REQUEST = True
 
 # Application definition
 

@@ -70,7 +70,18 @@ def busca(request):
     v = request.GET.get('v')
     p = request.GET.get('p')
     e = request.GET.get('e')
+    additem = request.GET.get('additem')
     atas = Ata.objects.all()
+
+    #itemsessao = request.session.get('listaitens', additem)
+    #request.session['listaitens'] = additem
+
+    if additem:
+        itemsessao = request.session.get('listaitens')
+        if count(itemsessao) > 0:
+            request.session['listaitens'] = itemsessao.append(additem)
+        else:
+            request.session['listaitens'] = []
 
     if qc:
         qc = qc.split(' ')
@@ -141,6 +152,7 @@ def busca(request):
         'menorvalor': menorvalor,
         'maiorvalor': maiorvalor,
         'mediavalor': mediavalor,
+        'listaitens': request.session['listaitens'],
     }
     #contexto['cursos'] = cursos
     return render(
