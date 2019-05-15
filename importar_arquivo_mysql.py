@@ -19,6 +19,7 @@ con.commit()
 
 
 print("Lendo o arquivo CSV...")
+local = "/home/miguelzamberlan/www/csv/"
 arquivos = ['atas_vigentesN.csv', 'atas_vigentesCO.csv', 'atas_vigentesSE.csv']
 #arquivos = ['atas_vigentes-test.csv']
 
@@ -26,7 +27,7 @@ log_erro = []
 
 for arquivo in arquivos:
     print("Lendo arquivo: ", arquivo)
-    data = pd.read_csv(arquivo)
+    data = pd.read_csv(local+arquivo)
 
     print("Criando o DATASET para inclusão...")
     full_dataset = []
