@@ -71,20 +71,20 @@ def busca(request):
     p = request.GET.get('p')
     e = request.GET.get('e')
     atas = Ata.objects.all()
-    if q:
-        q = q.split(' ')
-        for x in q:
-            descricao = Q(descricao_complementar_p1__icontains=x)
-            descricao2 = Q(descricao_complementar_p2__icontains=x)
-            desc_catalogo = Q(desc_catalogo__icontains=x)
-            atas = atas.filter(descricao | desc_catalogo | descricao2)
-        # cursos = watson.filter(Curso, q)
 
     if qc:
         qc = qc.split(' ')
         for x in qc:
             desc_catalogo = Q(desc_catalogo__icontains=x)
             atas = atas.filter(desc_catalogo)
+
+    if q:
+        q = q.split(' ')
+        for x in q:
+            descricao = Q(descricao_complementar_p1__icontains=x)
+            descricao2 = Q(descricao_complementar_p2__icontains=x)
+            atas = atas.filter(descricao | descricao2)
+        # cursos = watson.filter(Curso, q)
 
     if v:
         if p:
