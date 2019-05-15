@@ -82,11 +82,9 @@ def busca(request):
         itemsessao = []
 
     if additem:
-        if itemsessao.count() > 0:
-            itemsessao.append(additem)
-            request.session['listaitens'] = itemsessao
-        else:
-            request.session['listaitens'] = []
+        itemsessao.append(additem)
+        request.session['listaitens'] = itemsessao
+
 
     if qc:
         qc = qc.split(' ')
