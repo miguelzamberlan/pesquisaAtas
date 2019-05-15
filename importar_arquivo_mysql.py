@@ -3,11 +3,10 @@ import sqlite3
 import pymysql
 from datetime import datetime as dt
 
-print("Iniciando a conexão com SQLITE...")
+print("Iniciando a conexão com Banco de Dados...")
 #con = sqlite3.connect('db.sqlite3')
 try:
     con = pymysql.connect("mysql.miguelzamberlan.com.br","miguelzamberla02","a1b4k9ph","miguelzamberla02" )
-    print(con)
     cur = con.cursor()
 except Exception as err:
     print("Erro: ", err.args)
@@ -21,7 +20,7 @@ con.commit()
 
 print("Lendo o arquivo CSV...")
 arquivos = ['atas_vigentesN.csv', 'atas_vigentesCO.csv', 'atas_vigentesSE.csv']
-#arquivos = ['atas_vigentesN.csv']
+#arquivos = ['atas_vigentes-test.csv']
 
 log_erro = []
 
@@ -43,14 +42,6 @@ for arquivo in arquivos:
     full_dataset[0] = full_dataset[0].astype(str)
 
     #print(full_dataset)
-
-    print("Formando as query's...")
-    #query = "INSERT INTO pesquisa_ata (gerenciador, gerenciador_nome, uf, modalidade, certame, cnpj_fornecedor, nome_fornecedor, porte_fornecedor, \
-    #    munic_fornecedor, uf_fornecedor, tipo, cod_cat, nome_cat, desc_catalogo, grupo_material, data_homologacao, data_final_vigencia, \
-    #    prorrogacao_ata, item, descricao_complementar_p1, descricao_complementar_p2, fabricante, marca, unidade, qtd_ofertada, valor_unitario, \
-    #    valor_total) VALUES ("+','.join(map(str,'?'*len(full_dataset[0].columns))) + ")"
-
-    #print(query)
 
     #print("Iniciando a inserção dos dados...")
     for x in range(0, len(full_dataset[0])):
@@ -92,7 +83,6 @@ valor_total) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s',
         print("Registro ", x)
         try:
             result = cur.execute(query)
-            print(result)
             if result:
                 con.commit()
 
