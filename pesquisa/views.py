@@ -76,10 +76,12 @@ def busca(request):
     #itemsessao = request.session.get('listaitens', additem)
     #request.session['listaitens'] = additem
 
+    itemsessao = request.session.get('listaitens')
+
     if additem:
-        itemsessao = request.session.get('listaitens')
         if count(itemsessao) > 0:
-            request.session['listaitens'] = itemsessao.append(additem)
+            itemsessao.append(additem)
+            request.session['listaitens'] = itemsessao
         else:
             request.session['listaitens'] = []
 
