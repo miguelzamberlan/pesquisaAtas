@@ -1,0 +1,21 @@
+{% extends "inicio.html" %}
+
+    {% block conteudo %}
+asdf asf
+		<script type='text/javascript'>
+		document.iframe.onload = function() {
+
+		    alert("teste");
+
+		    var frm = document.frmLista;
+
+		    frm.numprp.value = '123';
+
+		};
+		</script>
+
+	    <div class="container-fluid p-3 p-md-5 ">
+	    <iframe id="iframe" name="iframe" height="100%" width="100%" src="http://comprasnet.gov.br/livre/pregao/ata0.asp"></iframe>
+	    </div>
+
+    {% endblock %}

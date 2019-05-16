@@ -21,11 +21,13 @@ from django.views.static import serve
 from django.conf.urls.static import static
 from pesquisa.views import relatorio
 from pesquisa.views import busca
+from pesquisa.views import detalha
 #from pesquisa.views import upload_file
 
 urlpatterns = [
     url(r'^$', busca, name='busca'),
     url(r'^relatorio/', relatorio, name='relatorio'),
+    url(r'^detalha/', detalha, name='detalha'),
     #url(r'^upload$', upload_file, name='upload_file'),
     path('admin/', admin.site.urls),
     #url(r'^static/(?P<path>/*)$', serve, {'document_root':settings.STATIC_ROOT}),

@@ -61,6 +61,14 @@ def relatorio(request):
         request, 'relatorio.html', contexto
     )
 
+def detalha(request):
+    contexto = {
+        'titulo': 'Pesquisa ATAS',
+    }
+    return render(
+        request, 'detalhapregao.html', contexto
+    )
+
 def busca(request):
     q = request.GET.get('q')
     qc = request.GET.get('qc')
