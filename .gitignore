@@ -1,4 +1,10 @@
 .idea
+.vscode
+
+# Arquivos CSV grandes
+atas_vigentesCO.csv
+atas_vigentesN.csv 
+atas_vigentesSE.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
