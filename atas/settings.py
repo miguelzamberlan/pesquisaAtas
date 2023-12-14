@@ -77,30 +77,10 @@ WSGI_APPLICATION = 'atas.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'miguelzamberla02',
-        'USER': 'miguelzamberla02',
-        'PASSWORD': 'a1b4k9ph',
-        'HOST': 'mysql.miguelzamberlan.com.br',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-
-    #'default': {
-    #    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #    'NAME': 'miguelzamberlan',
-    #    'USER': 'miguelzamberlan',
-    #    'PASSWORD': 'a1b4k9ph',
-    #    'HOST': 'pgsql.miguelzamberlan.com.br',
-    #}
-
-    #'default': {
-    #    'ENGINE': 'django.db.backends.sqlite3',
-    #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    #}
-
-
 }
-
 
 
 
